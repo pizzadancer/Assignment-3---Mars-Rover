@@ -1,7 +1,3 @@
-/*
- *  Types of commands : 'MODE_CHANGE', 'MOVE', or 'STATUS_CHECK'.
- */
-
 class Command {
   constructor(commandType, value) {
     this.commandType = commandType;
@@ -14,3 +10,7 @@ class Command {
 }
 
 module.exports = Command;
+
+/*
+ *  Types of commands : 'MODE_CHANGE', 'MOVE', or 'STATUS_CHECK'.
+ */

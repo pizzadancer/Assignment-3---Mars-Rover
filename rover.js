@@ -13,18 +13,17 @@ class Rover {
         }
 
         // Loops through the each command inside the message command property
-        for (let command in results) {
-            // if (command === "STATUS_CHECK") {
-            //     return {
-            //         completed: true,
-            //         roverStatus: {
-            //           mode: this.mode,
-            //           generatorWatts: this.generatorWatts,
-            //           position: this.position            
-            //         }
-            //     }
-            // }
-            console.log(command);
+        for (let command in response.results) {
+            if (command === "STATUS_CHECK") {
+                return {
+                    completed: true,
+                    roverStatus: {
+                      mode: this.mode,
+                      generatorWatts: this.generatorWatts,
+                      position: this.position            
+                    }
+                }
+            }
         }
             
 

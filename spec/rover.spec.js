@@ -16,23 +16,26 @@ describe("Rover class", function() {
   });
 
   it("response returned by receiveMessage contains name of message", function() {
-    let rover = new Rover(98382); // position
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
     let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
-    expect(response["message"]).toEqual(message.name);
+    expect(response.message).toEqual(message.name);
   });
 
   it("response returned by receiveMessage includes two results if two commands are sent in the message.", function() {
-    let rover = new Rover(98383);
-    let message = new Message("Test message with two commands", ['MOVE', 'STATUS_CHECK']);
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
-    expect(response["results"].length).toEqual(2);
+    expect(response["results"].length).toEqual(message["commands"].length);
   });
 
   //TEST 10
   it("responds correctly to status check command", function() {
-    let rover = new Rover(98383);
-    let message = new Message("Test message with two commands", ['MOVE', 'STATUS_CHECK']);
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
     expect(response["results"]).toEqual(jasmine.objectContaining(rover));
   });

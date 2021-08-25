@@ -9,25 +9,35 @@ class Rover {
         this.message = message;
         let response = {
             message: message.name,
-            results: message.commands
+            results: message.commands // ['MOVE', 'STATUS_CHECK']
         }
 
         // Loops through the each command inside the message command property
-        // for (let command in results) {
-        //     if (command === "STATUS_CHECK") {
-        //         return {
-        //             completed: true,
-        //             roverStatus: {
-        //               mode: this.mode,
-        //               generatorWatts: this.generatorWatts,
-        //               position: this.position            
-        //             }
-        //         }
-        //     }
-        // }
+        for (let command in results) {
+            // if (command === "STATUS_CHECK") {
+            //     return {
+            //         completed: true,
+            //         roverStatus: {
+            //           mode: this.mode,
+            //           generatorWatts: this.generatorWatts,
+            //           position: this.position            
+            //         }
+            //     }
+            // }
+            console.log(command);
+        }
             
 
         return response;
+    }
+
+    // move(position, amountToMove) {
+    //     this.position = position;
+    //     returns this.position + amountToMove;
+    // }
+
+    status_check() {
+
     }
 }
 module.exports = Rover;

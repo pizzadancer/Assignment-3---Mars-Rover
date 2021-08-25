@@ -1,6 +1,11 @@
 class Message {
+
+   // define constr with 2 params (name, commands)
+        // throw error if name is null/undefined
+        // set the name property
+        // set the command property
    constructor(name, commands) {
-      this.name = name;
+      this.name = name;      
       if (!name) {
          throw Error("Name required.");
       }

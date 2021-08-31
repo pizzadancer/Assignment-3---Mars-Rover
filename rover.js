@@ -20,7 +20,8 @@ class Rover {
                     roverStatus: {
                       mode: this.mode,
                       generatorWatts: this.generatorWatts,
-                      position: this.position            
+                      position: this.position
+                      // tests            
                     }
                 })
             }

@@ -37,7 +37,11 @@ describe("Rover class", function() {
     let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
     let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
-    expect(response["results"]).toEqual(jasmine.objectContaining(rover));
+    // console.log(response.results)
+    expect(response.results[0]).toEqual(jasmine.objectContaining({
+      completed: true,
+      roverStatus: { mode: 'NORMAL', generatorWatts: 110, position: 98382 }
+    }));
   });
 });
 

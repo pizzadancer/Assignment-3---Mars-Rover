@@ -9,23 +9,25 @@ class Rover {
         this.message = message;
         let response = {
             message: message.name,
-            results: message.commands // ['MOVE', 'STATUS_CHECK']
+            results: [] // ['MOVE', 'STATUS_CHECK']
         }
 
         // Loops through the each command inside the message command property
-        for (let command in response.results) {
+        for (let command of message.commands) {
             if (command === "STATUS_CHECK") {
-                return {
+                response.results.push({ 
                     completed: true,
                     roverStatus: {
                       mode: this.mode,
                       generatorWatts: this.generatorWatts,
                       position: this.position            
                     }
-                }
+                })
             }
         }
             
+        // name and array of response objects
+        // append to response.results
 
         return response;
     }

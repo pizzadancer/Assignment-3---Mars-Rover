@@ -42,6 +42,18 @@ describe("Rover class", function() {
       roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: 98382 }
     }));
   });
+
+   //TEST 11
+   it("responds correctly to mode change command", function() {
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let message = new Message("Test message with two commmands", commands);
+    let rover = new Rover(98382); // position    
+    let response = rover.receiveMessage(message);
+    expect(response.results[0]).toEqual({completed: true});
+    expect(rover.mode).toEqual("LOW_POWER");
+  });
+
+  //
 });
 
 // expect(object).toEqual(jasmine.objectContaining(objectToCompare))

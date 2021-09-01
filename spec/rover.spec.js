@@ -62,6 +62,17 @@ describe("Rover class", function() {
     expect(rover.mode).toEqual("LOW_POWER");
     expect(response.results[1]).toEqual({completed: false});
   });
+
+  //TEST 13
+  it("responds with position for move command", function() {
+    let commands = [new Command('MOVE', 12000), new Command('STATUS_CHECK')];
+    let message = new Message("Test message with two commmands", commands);
+    let rover = new Rover(98382); // position    
+    expect(rover.position).toEqual(98382);
+    let response = rover.receiveMessage(message);
+    expect(response.results[0]).toEqual({completed: true});
+    expect(rover.position).toEqual(12000);
+  });
 });
 
 // expect(object).toEqual(jasmine.objectContaining(objectToCompare))

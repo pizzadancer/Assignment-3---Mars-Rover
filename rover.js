@@ -14,16 +14,26 @@ class Rover {
 
         // Loops through the each command inside the message command property
         for (let command of message.commands) {
-            if (command === "STATUS_CHECK") {
+            // console.log(command)
+            if (command.commandType === "STATUS_CHECK") {
                 response.results.push({ 
                     completed: true,
                     roverStatus: {
                       mode: this.mode,
                       generatorWatts: this.generatorWatts,
-                      position: this.position
-                      // tests            
+                      position: this.position        
                     }
                 })
+            } else if (command.commandType === "MODE_CHANGE") {
+                this.mode = command.value,
+                response.results.push({ 
+                    completed: true
+                })
+            // } else if (command === "MOVE") {
+            //     position = this.position,
+            //     response.results.push({ 
+            //         completed: true
+            //     })
             }
         }
             
@@ -38,9 +48,6 @@ class Rover {
     //     returns this.position + amountToMove;
     // }
 
-    status_check() {
-
-    }
 }
 module.exports = Rover;
 

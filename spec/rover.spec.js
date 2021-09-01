@@ -17,7 +17,7 @@ describe("Rover class", function() {
 
   it("response returned by receiveMessage contains name of message", function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-    let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let message = new Message("Test message with two commmands", commands);
     let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
     expect(response.message).toEqual(message.name);
@@ -25,22 +25,21 @@ describe("Rover class", function() {
 
   it("response returned by receiveMessage includes two results if two commands are sent in the message.", function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-    let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let message = new Message("Test message with two commmands", commands);
     let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
-    expect(response["results"].length).toEqual(message["commands"].length);
+    expect(response.results.length).toEqual(message.commands.length);
   });
 
   //TEST 10
   it("responds correctly to status check command", function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-    let message = new Message("Test message with two commmands", ['MOVE', 'STATUS_CHECK']);
+    let message = new Message("Test message with two commmands", commands);
     let rover = new Rover(98382); // position    
     let response = rover.receiveMessage(message);
-    // console.log(response.results)
-    expect(response.results[0]).toEqual(jasmine.objectContaining({
+    expect(response.results[1]).toEqual(jasmine.objectContaining({
       completed: true,
-      roverStatus: { mode: 'NORMAL', generatorWatts: 110, position: 98382 }
+      roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: 98382 }
     }));
   });
 });

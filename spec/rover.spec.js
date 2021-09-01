@@ -53,7 +53,15 @@ describe("Rover class", function() {
     expect(rover.mode).toEqual("LOW_POWER");
   });
 
-  //
+  //TEST 12
+  it("responds with false completed value when attempting to move in LOW_POWER mode", function() {
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 12000)];
+    let message = new Message("Test message with two commmands", commands);
+    let rover = new Rover(98382); // position    
+    let response = rover.receiveMessage(message);
+    expect(rover.mode).toEqual("LOW_POWER");
+    expect(response.results[1]).toEqual({completed: false});
+  });
 });
 
 // expect(object).toEqual(jasmine.objectContaining(objectToCompare))

@@ -75,7 +75,7 @@ describe("Rover class", function() {
   });
 });
 
-// expect(object).toEqual(jasmine.objectContaining(objectToCompare))
+
 /*
   >> Rover Class Description <<
 constructor(position)
@@ -91,3 +91,5 @@ receiveMessage(message)
     Updates certain properties of the rover object
         Details about how to respond to different commands are in the Command Types table.
 */
+
+// expect(object).toEqual(jasmine.objectContaining(objectToCompare))

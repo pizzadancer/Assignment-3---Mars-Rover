@@ -9,12 +9,11 @@ class Rover {
         this.message = message;
         let response = {
             message: message.name,
-            results: [] // ['MOVE', 'STATUS_CHECK']
+            results: [] 
         }
 
         // Loops through the each command inside the message command property
         for (let command of message.commands) {
-            // console.log(command)
             if (command.commandType === "STATUS_CHECK") {
                 response.results.push({ 
                     completed: true,
@@ -38,30 +37,14 @@ class Rover {
                 response.results.push({ 
                     completed: true
                 })
-            // } else if (command === "MOVE") {
-            //     position = this.position,
-            //     response.results.push({ 
-            //         completed: true
-            //     })
             }
         }
-            
-        // name and array of response objects
-        // append to response.results
 
         return response;
     }
 
-    // move(position, amountToMove) {
-    //     this.position = position;
-    //     returns this.position + amountToMove;
-    // }
-
 }
 module.exports = Rover;
-
-// STATUS_CHECK	No values sent with this command.	No updates {completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}} Values for mode, generatorWatts, position will depend on current state of rover.
-
 
 /*
   >> Rover Class Description <<
